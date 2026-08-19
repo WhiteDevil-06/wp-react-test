@@ -1,32 +1,32 @@
-'use client';
-
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import ServicesSection from '@/components/ServicesSection';
-import CaseStudiesSection from '@/components/CaseStudiesSection';
-import WpValidationPanel from '@/components/WpValidationPanel';
-import Footer from '@/components/Footer';
+import React from 'react';
+import { GlobalShell } from '@/components/layout/GlobalShell';
+import { HomeHero } from '@/components/home/HomeHero';
+import { FounderAuthoritySection } from '@/components/home/FounderAuthoritySection';
+import { ServicesOverviewSection } from '@/components/home/ServicesOverviewSection';
+import { LeadCtaSection } from '@/components/home/LeadCtaSection';
+import { getOrganizationSchema, getWebSiteSchema } from '@/lib/seo/schema';
 
 export default function Home() {
-  const [refreshCount, setRefreshCount] = useState(0);
-
-  const handleDataChange = () => {
-    setRefreshCount((prev) => prev + 1);
-  };
+  const organizationSchema = getOrganizationSchema();
+  const websiteSchema = getWebSiteSchema();
 
   return (
-    <div className="min-h-screen bg-nexora-bg text-nexora-text selection:bg-nexora-cyan selection:text-black">
-      <Navbar />
-      <main>
-        <Hero />
-        <ServicesSection refreshCount={refreshCount} />
-        <CaseStudiesSection refreshCount={refreshCount} />
-      </main>
-      <Footer />
+    <GlobalShell>
+      {/* Inject Structured JSON-LD Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
 
-      {/* Interactive WordPress Content Validation Controller Panel */}
-      <WpValidationPanel onDataChange={handleDataChange} />
-    </div>
+      {/* Homepage Editorial Sections */}
+      <HomeHero />
+      <FounderAuthoritySection />
+      <ServicesOverviewSection />
+      <LeadCtaSection />
+    </GlobalShell>
   );
 }
