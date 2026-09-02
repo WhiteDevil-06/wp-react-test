@@ -1,86 +1,49 @@
 import React from 'react';
-import Link from 'next/link';
 import { GlobalShell } from '@/components/layout/GlobalShell';
-import { Container } from '@/components/ui/Container';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
+import { ServicesCarousel } from '@/components/ui/ServicesCarousel';
+import { services } from '@/lib/data/services';
 import { Button } from '@/components/ui/Button';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { HYLOS_SERVICES } from '@/lib/content/servicesData';
-import { ArrowUpRight } from 'lucide-react';
-import { Metadata } from 'next';
-import { ROUTE_SEO } from '@/lib/seo/config';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: ROUTE_SEO.services.title,
-  description: ROUTE_SEO.services.description,
-  alternates: {
-    canonical: ROUTE_SEO.services.canonical,
-  },
-  openGraph: ROUTE_SEO.services.openGraph,
-  twitter: ROUTE_SEO.services.twitter,
+export const metadata = {
+  title: 'Services — Hylos B2B Marketing',
+  description: 'Explore our B2B services including Founder Branding, Company Branding, AI-SEO, and Performance Marketing.',
 };
 
 export default function ServicesPage() {
   return (
     <GlobalShell>
-      {/* Header Banner */}
-      <section className="py-16 bg-hylos-container-low border-b border-hylos-outline-variant/60 relative overflow-hidden">
-        <div className="ambient-glow-cyan w-96 h-96 -top-20 -left-20" />
-        <Container className="relative z-10">
-          <ScrollReveal direction="down" delay={0.1}>
-            <Badge variant="cyan" className="mb-4">Capabilities Matrix</Badge>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.2}>
-            <h1 className="text-4xl sm:text-5xl font-bold font-display text-hylos-on-surface mb-6">
-              B2B Growth & Authority Solutions
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.3}>
-            <p className="text-hylos-on-surface-variant text-lg font-sans font-light max-w-3xl leading-relaxed">
-              From executive LinkedIn personal branding to generative AI search optimization and performance marketing, every solution is built to turn domain expertise into buyer demand.
-            </p>
-          </ScrollReveal>
-        </Container>
+      {/* Hero */}
+      <section className="pt-32 pb-20 md:pt-48 md:pb-24 px-4 max-w-site mx-auto text-center">
+        <h1 className="font-display font-extrabold text-5xl md:text-7xl text-hylos-on-surface mb-6 tracking-tight">
+          Capabilities & <span className="text-hylos-cyan-dark">Solutions</span>
+        </h1>
+        <p className="text-lg md:text-xl text-hylos-on-surface-variant font-sans max-w-2xl mx-auto leading-relaxed">
+          [Placeholder] Comprehensive strategies designed to elevate your B2B authority and capture high-intent enterprise demand.
+        </p>
       </section>
 
-      {/* Solutions Grid */}
-      <section className="py-16">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {HYLOS_SERVICES.map((service, idx) => (
-              <ScrollReveal key={service.id} direction="up" delay={0.1 * (idx + 1)}>
-                <Card variant="bordered" className="flex flex-col justify-between h-full bg-hylos-surface-lowest">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-technical text-hylos-cyan-dark">{service.id}</span>
-                      {service.featured && <Badge variant="orange">Core Solution</Badge>}
-                    </div>
+      {/* Services Carousel Area */}
+      <section className="pb-32">
+        <ServicesCarousel services={services} />
+      </section>
 
-                    <h2 className="text-xl font-bold font-display text-hylos-on-surface mb-3">
-                      {service.title}
-                    </h2>
-
-                    <p className="text-hylos-on-surface-variant text-xs font-sans leading-relaxed mb-6 font-light">
-                      {service.shortDescription}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-hylos-outline-variant/40 flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-hylos-on-surface-variant">
-                      {service.deliverables.length} Deliverables
-                    </span>
-                    <Link href={`/services/${service.slug}`}>
-                      <Button variant="ghost" size="sm" icon={<ArrowUpRight className="w-3.5 h-3.5" />}>
-                        Explore Solution
-                      </Button>
-                    </Link>
-                  </div>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Container>
+      {/* Final CTA */}
+      <section className="py-24 px-4 bg-hylos-surface-low border-t border-hylos-outline-variant/30 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-hylos-on-surface mb-6">
+            Not sure which service fits your current stage?
+          </h2>
+          <p className="font-sans text-hylos-on-surface-variant mb-10">
+            [Placeholder] Book a session with our strategists to map out the exact growth levers you need right now.
+          </p>
+          <Link href="/contact">
+            <Button variant="action" size="lg" icon={<ArrowRight className="w-4 h-4" />}>
+              Talk to a Strategist
+            </Button>
+          </Link>
+        </div>
       </section>
     </GlobalShell>
   );
