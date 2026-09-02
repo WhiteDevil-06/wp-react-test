@@ -1,185 +1,92 @@
 import React from 'react';
 import { GlobalShell } from '@/components/layout/GlobalShell';
-import { Container } from '@/components/ui/Container';
-import { Badge } from '@/components/ui/Badge';
-import { Card } from '@/components/ui/Card';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
-import { HYLOS_FOUNDER_INFO, HYLOS_METRICS } from '@/lib/content/servicesData';
-import { getBreadcrumbSchema, getOrganizationSchema } from '@/lib/seo/schema';
-import { CheckCircle2, ShieldCheck } from 'lucide-react';
-import { Metadata } from 'next';
-import { ROUTE_SEO } from '@/lib/seo/config';
+import { Button } from '@/components/ui/Button';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: ROUTE_SEO.about.title,
-  description: ROUTE_SEO.about.description,
-  alternates: {
-    canonical: ROUTE_SEO.about.canonical,
-  },
-  openGraph: ROUTE_SEO.about.openGraph,
-  twitter: ROUTE_SEO.about.twitter,
+export const metadata = {
+  title: 'About Us — Hylos',
+  description: 'Learn about Hylos, our mission, and our founder.',
 };
 
 export default function AboutPage() {
-  const organizationSchema = getOrganizationSchema();
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Home', url: 'https://hylos.co' },
-    { name: 'About', url: 'https://hylos.co/about' },
-  ]);
-
-  const continuumPhases = [
-    { phase: 'Phase 01 • People', desc: 'Identifying real human domain experts and executive leaders.' },
-    { phase: 'Phase 02 • Ideas', desc: 'Translating complex technical IP into high-signal narratives.' },
-    { phase: 'Phase 03 • Content', desc: 'Publishing editorial articles, carousels, and whitepapers.' },
-    { phase: 'Phase 04 • Audience', desc: 'Reaching verified enterprise buyers and key accounts.' },
-    { phase: 'Phase 05 • Authority', desc: 'Earning strategic trust and category recommendation.' },
-    { phase: 'Phase 06 • Demand', desc: 'Capturing inbound enterprise leads and sales conversations.' },
-  ];
-
   return (
     <GlobalShell>
-      {/* Inject Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {/* Hero */}
+      <section className="pt-32 pb-20 md:pt-48 md:pb-24 px-4 max-w-site mx-auto text-center">
+        <h1 className="font-display font-extrabold text-5xl md:text-7xl text-hylos-on-surface mb-6 tracking-tight">
+          About <span className="text-hylos-cyan-dark">Hylos</span>
+        </h1>
+        <p className="text-lg md:text-xl text-hylos-on-surface-variant font-sans max-w-3xl mx-auto leading-relaxed">
+          [Placeholder] We are a specialized B2B marketing firm dedicated to elevating technical founders and enterprise companies into undisputed industry authorities.
+        </p>
+      </section>
 
-      {/* Header Banner */}
-      <section className="py-16 bg-hylos-container-low border-b border-hylos-outline-variant/60 relative overflow-hidden">
-        <div className="ambient-glow-cyan w-96 h-96 -top-20 -left-20" />
-        <Container className="relative z-10">
-          <ScrollReveal direction="down" delay={0.1}>
-            <Badge variant="cyan" className="mb-4">Our Narrative & Mission</Badge>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.2}>
-            <h1 className="text-4xl sm:text-5xl font-bold font-display text-hylos-on-surface mb-6">
-              We Turn Expertise Into Category Authority.
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.3}>
-            <p className="text-hylos-on-surface-variant text-lg font-sans font-light max-w-3xl leading-relaxed">
-              Hylos was founded on a simple realization: in complex enterprise technology sales, buyers don’t trust generic corporate ad copy. They trust domain experts who publish high-signal insight.
+      {/* Mission & Approach Grid */}
+      <section className="py-24 bg-hylos-surface-low border-y border-hylos-outline-variant/30 px-4">
+        <div className="max-w-site mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <span className="text-technical text-hylos-orange mb-4 block">Our Mission</span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-hylos-on-surface mb-6 leading-tight">
+              [Placeholder] To eradicate the obscurity of brilliant technical companies.
+            </h2>
+            <p className="font-sans text-hylos-on-surface-variant leading-relaxed">
+              [Placeholder] Too many incredible B2B solutions lose to inferior competitors simply because they lack the authority and visibility necessary to win trust. Our mission is to bridge that gap.
             </p>
-          </ScrollReveal>
-        </Container>
+          </div>
+          <div>
+            <span className="text-technical text-hylos-cyan-dark mb-4 block">Our Approach</span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-hylos-on-surface mb-6 leading-tight">
+              [Placeholder] Engineering influence through precision and intent.
+            </h2>
+            <p className="font-sans text-hylos-on-surface-variant leading-relaxed">
+              [Placeholder] We do not believe in fluff. We believe in data-backed positioning, deeply technical AI-SEO, and creating founder narratives that resonate directly with enterprise decision-makers.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Founder Leadership Section */}
-      <section className="py-16">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 flex flex-col gap-6">
-              <ScrollReveal direction="left" delay={0.1}>
-                <Badge variant="orange">Founder & Executive Leadership</Badge>
-              </ScrollReveal>
-              <ScrollReveal direction="left" delay={0.2}>
-                <h2 className="text-3xl sm:text-4xl font-bold font-display text-hylos-on-surface">
-                  {HYLOS_FOUNDER_INFO.name}
-                </h2>
-                <span className="text-technical text-hylos-cyan-dark block mt-1">{HYLOS_FOUNDER_INFO.title}</span>
-              </ScrollReveal>
-              <ScrollReveal direction="left" delay={0.3}>
-                <p className="text-hylos-on-surface-variant text-base font-sans leading-relaxed font-light">
-                  {HYLOS_FOUNDER_INFO.bio}
-                </p>
-              </ScrollReveal>
-              <ScrollReveal direction="left" delay={0.4}>
-                <blockquote className="p-6 bg-hylos-surface-low rounded-subtle border-l-4 border-hylos-orange italic font-display text-lg text-hylos-on-surface">
-                  "{HYLOS_FOUNDER_INFO.quote}"
-                </blockquote>
-              </ScrollReveal>
-            </div>
-
-            <div className="lg:col-span-5">
-              <ScrollReveal direction="scale" delay={0.3}>
-                <Card variant="bordered" className="bg-hylos-surface-lowest p-8 flex flex-col gap-4">
-                  <div className="flex items-center justify-between pb-4 border-b border-hylos-outline-variant">
-                    <span className="text-technical text-hylos-cyan-dark">Founder Background</span>
-                    <ShieldCheck className="w-5 h-5 text-hylos-cyan" />
-                  </div>
-                  <div className="space-y-3 font-sans text-xs text-hylos-on-surface-variant">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-hylos-cyan shrink-0" />
-                      <span>AI-driven digital marketing leader</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-hylos-cyan shrink-0" />
-                      <span>Enterprise marketing experience across Finance, Aviation, Tech</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-hylos-cyan shrink-0" />
-                      <span>Pioneer in LinkedIn executive brand positioning</span>
-                    </div>
-                  </div>
-                </Card>
-              </ScrollReveal>
+      {/* Founder Section */}
+      <section className="py-24 px-4 max-w-site mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 relative">
+            <div className="w-full aspect-[3/4] bg-hylos-container-high rounded-subtle border border-hylos-outline-variant flex items-center justify-center overflow-hidden">
+              <span className="text-hylos-on-surface-variant font-mono text-sm">[Placeholder: Founder Image]</span>
             </div>
           </div>
-        </Container>
+          <div className="lg:col-span-7">
+            <span className="text-technical text-hylos-on-surface-variant mb-4 block">The Founder</span>
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-hylos-on-surface mb-6">
+              [Founder Name]
+            </h2>
+            <div className="space-y-6 font-sans text-hylos-on-surface-variant text-lg leading-relaxed">
+              <p>[Placeholder] Founder bio goes here. Detail their background, expertise in B2B marketing, and the vision that led to the creation of Hylos.</p>
+              <p>[Placeholder] Additional context about their experience with enterprise sales, organic growth, or personal branding that establishes their authority.</p>
+            </div>
+            <div className="mt-8">
+              <a href="#" className="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-hylos-cyan-dark hover:text-hylos-orange transition-colors">
+                Connect on LinkedIn <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Human Influence Philosophy Section */}
-      <section className="py-16 bg-hylos-container-low border-y border-hylos-outline-variant/60">
-        <Container>
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="max-w-3xl mb-12">
-              <Badge variant="cyan" className="mb-4">Core Philosophy</Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-hylos-on-surface">
-                The Human Influence Network
-              </h2>
-              <p className="text-hylos-on-surface-variant text-base mt-4 font-sans font-light leading-relaxed">
-                We connect executive insight directly to buyer demand through a structured 6-phase influence continuum:
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-            {continuumPhases.map((p, idx) => (
-              <ScrollReveal key={idx} direction="up" delay={0.1 * (idx + 1)}>
-                <Card variant="bordered" className="bg-hylos-surface-lowest p-6 h-full">
-                  <span className={`font-bold block mb-2 ${idx === 5 ? 'text-hylos-orange' : 'text-hylos-cyan-dark'}`}>
-                    {p.phase}
-                  </span>
-                  <p className="font-sans text-hylos-on-surface-variant text-xs font-light">{p.desc}</p>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Verified Metrics Section with Live Animated Counters */}
-      <section className="py-16">
-        <Container>
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <Badge variant="orange" className="mb-2">Verified Credibility</Badge>
-              <h2 className="text-3xl font-bold font-display text-hylos-on-surface">
-                Track Record of Impact
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {HYLOS_METRICS.map((m, idx) => (
-              <ScrollReveal key={idx} direction="up" delay={0.1 * (idx + 1)}>
-                <Card variant="bordered" className="bg-hylos-surface-lowest p-6">
-                  <span className="block text-3xl sm:text-4xl font-bold font-display text-hylos-on-surface mb-2">
-                    <AnimatedCounter value={m.value} />
-                  </span>
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-hylos-on-surface-variant">
-                    {m.label}
-                  </span>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Container>
+      {/* Why Hylos CTA */}
+      <section className="py-24 px-4 bg-hylos-surface text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-hylos-on-surface mb-6">
+            Ready to build your authority?
+          </h2>
+          <p className="font-sans text-hylos-on-surface-variant text-lg mb-10">
+            [Placeholder] Stop competing on price and start competing on trust. Let us build your influence engine.
+          </p>
+          <Link href="/contact">
+            <Button variant="action" size="lg" icon={<ArrowRight className="w-4 h-4" />}>
+              Start the Conversation
+            </Button>
+          </Link>
+        </div>
       </section>
     </GlobalShell>
   );
